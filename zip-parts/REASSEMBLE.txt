@@ -7,11 +7,20 @@ Linux / macOS / Git Bash (из корня репозитория):
   cat zip-parts/firefox-win64/firefox-win64.zip.* > firefox-win64.zip
   cat zip-parts/webkit-win64/webkit-win64.zip.* > webkit-win64.zip
 
-Windows CMD (из корня репозитория):
+Windows: команда copy /b есть только в CMD, не в PowerShell (в PowerShell copy = Copy-Item, /b не поддерживается — отсюда ошибка про аргумент).
+
+Вариант A — открыть «Командная строка» (cmd.exe), перейти в корень репозитория и выполнить:
 
   copy /b zip-parts\chrome-headless-shell-win64\chrome-headless-shell-win64.zip.aa+zip-parts\chrome-headless-shell-win64\chrome-headless-shell-win64.zip.ab chrome-headless-shell-win64.zip
   copy /b zip-parts\chrome-win64\chrome-win64.zip.aa+zip-parts\chrome-win64\chrome-win64.zip.ab chrome-win64.zip
   copy /b zip-parts\firefox-win64\firefox-win64.zip.aa+zip-parts\firefox-win64\firefox-win64.zip.ab firefox-win64.zip
   copy /b zip-parts\webkit-win64\webkit-win64.zip.aa webkit-win64.zip
+
+Вариант B — из PowerShell (тот же каталог — корень репо), через cmd:
+
+  cmd /c "copy /b zip-parts\chrome-headless-shell-win64\chrome-headless-shell-win64.zip.aa+zip-parts\chrome-headless-shell-win64\chrome-headless-shell-win64.zip.ab chrome-headless-shell-win64.zip"
+  cmd /c "copy /b zip-parts\chrome-win64\chrome-win64.zip.aa+zip-parts\chrome-win64\chrome-win64.zip.ab chrome-win64.zip"
+  cmd /c "copy /b zip-parts\firefox-win64\firefox-win64.zip.aa+zip-parts\firefox-win64\firefox-win64.zip.ab firefox-win64.zip"
+  cmd /c "copy /b zip-parts\webkit-win64\webkit-win64.zip.aa webkit-win64.zip"
 
 Части по 95 MiB (ниже лимита GitHub 100 MB на файл). Исходные цельные .zip в корне — в .gitignore; в Git кладутся только файлы из zip-parts/.
